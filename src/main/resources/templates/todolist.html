@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Todolist</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+</head>
+<body>
+ <div class="container">
+	<div class="col-md-4">
+	<h1>Todolist</h1>
+	</div>
+	<div class="col-md-4">
+		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+ </div>
+    <table class="table table-striped">
+		<tr>
+		    <th scope="col">Todo</th>
+		    <th scope="col">Date</th>
+		    <th scope="col">Category</th> 
+		    <th scope="col"></th>
+		    <th scope="col"></th>
+		</tr>  
+		<tr th:each="todo : ${todos}">
+			<th scope="row" class="align-middle" th:text="${todo.task}"></td>
+			<td class="align-middle" th:text="${todo.date}"></td>
+			<td class="align-middle" th:text="${todo.category.name}"></td>
+			
+			
+		    <td><a th:href="@{/edit/{id}(id=${todo.id})}"  class="btn btn-primary">Edit</a></td>
+		    <td><a th:href="@{/delete/{id}(id=${todo.id})}" class="btn btn-xs btn-danger">Delete</a></td> 	
+		</tr>
+     </table>
+     <a href="/add" class="btn btn-primary">Add Todo</a>  
+     <form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out"/>
+		</form> 	
+		
+		<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+</body>
+</html>
