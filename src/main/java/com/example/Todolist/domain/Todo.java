@@ -10,16 +10,17 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Todo {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String task, date;
-	
+
 	@ManyToOne
-    @JoinColumn(name = "categoryid")
-    private Category category;
-	
-	public Todo() {}
-	
+	@JoinColumn(name = "categoryid")
+	private Category category;
+
+	public Todo() {
+	}
+	// Naming all the thing that belong in one todo
 	public Todo(String task, String date, Category category) {
 		super();
 		this.task = task;
@@ -58,14 +59,14 @@ public class Todo {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	
+
 	@Override
 	public String toString() {
 		if (this.category != null)
 			return "Todo [id=" + id + ", task=" + task + ", date=" + date + " category =" + this.getCategory() + "]";
 		else
 			return "Book [id=" + id + ", task=" + task + ", date=" + date + "]";
-	
+
 	}
-	
+
 }

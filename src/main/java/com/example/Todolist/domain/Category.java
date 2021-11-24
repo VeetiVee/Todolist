@@ -14,16 +14,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Category {
 	@Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long categoryid;
 	private String name;
-	
+
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
 	private List<Todo> todo;
-	
-	public Category () {}
-	
+
+	public Category() {
+	}
+
 	public Category(String name) {
 		super();
 		this.name = name;
@@ -57,5 +58,5 @@ public class Category {
 	public String toString() {
 		return "Category [categoryid=" + categoryid + ", name=" + name + "]";
 	}
-	
+
 }

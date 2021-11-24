@@ -19,16 +19,17 @@ public class TodolistApplication {
 
 	@Bean
 	public CommandLineRunner demo(TodoRepository todoRepository, CategoryRepository crepository) {
-	return (args) -> {
-		
-		crepository.save(new Category("Sports"));
-		crepository.save(new Category("School"));
-		crepository.save(new Category("Work"));
-		crepository.save(new Category("Other"));
-		
-		todoRepository.save(new Todo("Kiipeily", "08.11.2021", crepository.findByName("Sports").get(0)));
-		
-	};
-	
+		return (args) -> {
+			// Making categories
+			crepository.save(new Category("Sports"));
+			crepository.save(new Category("School"));
+			crepository.save(new Category("Work"));
+			crepository.save(new Category("Other"));
+			
+			// One test line to site
+			todoRepository.save(new Todo("Kiipeily", "08.11.2021", crepository.findByName("Sports").get(0)));
+
+		};
+
 	}
 }
